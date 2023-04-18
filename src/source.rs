@@ -91,7 +91,7 @@ impl<S: AsRef<str>> From<S> for Source {
                     }
                 }
 
-                let len = line.chars().count();
+                let len = line.chars().fold(0, |mut acc, i| {acc += i.len_utf8(); acc });
                 let ends_with_cr = line.ends_with('\r');
                 let line = Line {
                     offset,
